@@ -1,0 +1,22 @@
+____________FLEXBOX____________
+display:flex
+display: inline-flex
+justufy-content
+align-items
+flex-wrap
+
+align-self -    переопределяет выравнивание 
+order -         порядок вывода элементов 
+flex-basis-     управляет базовым размером элемента 
+flex-grow -     возможность увеличиваться в размере 
+flex-shrink -   возможность уменьшаться в размере
+
+flex-direction - устанавливает основную ось по которой выстраиваються флекс элементы
+    row -                           в ряд
+    row-reverse -                   в ряд, но стартуют с конца
+    column -                        в колону
+    column-reverse -                в колону , но наоборот - снизу вверх
+    align-items и justify-content - распределение контейнеров
+    order -                         менять местами контейнеры
+    justify-content нагляднее -     
+    flex -                          
