@@ -1,5 +1,4 @@
-/*
-* {
+/* * {
   padding: 0;
   margin: 0;
   border: 0;
@@ -67,7 +66,7 @@ ul li {
 img {
   vertical-align: top;
 }
-*/
+
 h1,
 h2,
 h3,
@@ -76,17 +75,135 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: 400;
+} */
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
 }
 
-/*Container*/
-.container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0px auto;
-  height: 1130px;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 /*Intro*/
 .intro {
-  background: url("../img/Corporate-Landing-Page_01.jpg") center no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: url("../img/img_1.jpg") center no-repeat;
+  height: 1000px;
   background-size: cover;
+  margin: 0;
+}
+/*Container*/
+.container {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .intro__img {
+  cursor: pointer;
+  padding: 30px 20px;
+}
+
+.container .intro__btn {
+  background-color: #f24b4b;
+  border-radius: 9px;
+  border: 1px solid #942911;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Courier New;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 12px 43px;
+  text-decoration: none;
+}
+.container .intro__btn:hover {
+  background-color: #bc3315;
+}
+.container .intro__btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.container .intro__header {
+  font-size: 54px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  width: 70%;
+  line-height: 1.2;
+}
+
+/*CONTENT */
+.content {
+  height: 1000px;
+  background-color: #ececec;
+}
+
+.background {
+  width: 66%;
+  height: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.background .container1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+.container1 .content__header {
+  font-size: 16px;
+  margin: 0;
+  text-transform: uppercase;
+  color: red;
+}
+.container1 .content__header2 {
+  font-size: 40px;
+  margin: 10px 0px;
+  line-height: 1.2;
+}
+.container1 .content__text {
+  font-size: 16px;
+}
+.d5 {
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  border-right: 100px solid #959fb0;
+  border-bottom: 50px solid transparent;
+}
+/*_____________FOOTER___________*/
+
+.footer {
+  height: 1000px;
+  background-size: cover;
+  background-color: #f6f5f3;
+}
+.footer_container {
 }
