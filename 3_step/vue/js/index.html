@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go vueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sample">
+            <input type="text" v-model="name">
+            <h2>Vuejs say {{name}} </h2>
+        </div>
+        <hr>
+        <div class="sample2">
+            <button class="btn" v-on:click="showH2 = !showH2">
+                Toggle header
+            </button>
+            <h2 v-show="showH2">vue vue </h2>
+            <button class="btn2" v-on:click="numbers.push(Math.random())">
+                Random
+            </button>
+            <ul class="list_group">
+                <li class="list_group_item" v-for="number in numbers">
+                    {{numbers}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let sample = new Vue({
+            // el: '.sample'
+            el: '.sample2',
+            data: {
+                name: '',
+                showH2: true,
+                numbers: []
+            }
+        })
+    </script>
+</body>
+</html>
