@@ -4,12 +4,21 @@
     <button @click="component = 'ListNote'">My notes</button>
     <button @click="component = 'CreateTodo'">Create new note</button>
 
-    <!-- <keep-alive>
-      <component :is="component" v-show="component"></component>
-    </keep-alive> -->
-    <createTodo :handleUpdateNotes="updateNotes" v-if="component == 'CreateTodo'"/>
+    <keep-alive>
+      <createTodo 
+        :saveNote="saveNote"
+        v-if="component == 'CreateTodo'"/>
+    </keep-alive>
 
-    <listNote :notes="notesApp" v-if="component == 'ListNote'"/>   
+      
+      <listNote
+        :saveAllEdits="saveAllEdits"
+        :appNotes="appNotes"
+        v-if="component == 'ListNote'
+      "/>  
+  
+     
+
   </div>
 </template>
 
@@ -24,14 +33,25 @@ export default {
     return {
       title: "Todo app",
       component: 'CreateTodo',
-      notesApp:[],
-      theDone: false
+      appNotes: [],
     }
   },
   methods: {
-    updateNotes(notes){
-      this.notesApp = notes
+    saveNote(obj){
+      this.appNotes.push(obj)
+      console.log(this.appNotes);
+    },
+    saveAllEdits(obj){
+      this.appNotes = JSON.parse(JSON.stringify(obj))
+      console.log(this.appNotes);
     }
+    // deleteTodo(i, key){
+    //   this.appNotes[key].todos.splice(i, 1)
+    // },
+    // editTodo(i){
+    //   // this.appNotes[this.appNotes.length -1].todos[i].editState == true
+    //   console.log(this.appNotes[i]);
+    // }
   },
   components: {
     CreateTodo,
@@ -40,10 +60,5 @@ export default {
 }
 </script>
 <style>
-.app {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
 
 </style>

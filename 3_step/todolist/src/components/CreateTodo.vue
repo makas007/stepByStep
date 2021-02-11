@@ -3,27 +3,20 @@
     <div class="content">
       <hr>
       <p>Create new ToDo</p>
-      <input type="text" placeholder="Set name the note..." v-model="noteName">
+      <input type="text" placeholder="Set name the note..." v-model="noteNameSelf">
       <br>
       <br>
-      <input type="text" placeholder="Create todo..." v-model="todoName">
-      <button @click="addTodo(id++)">ADD</button>
-      <p>{{noteName}}: </p>
-      <div v-for="(note, i) of notes" :key="note.id">
+      <input type="text" placeholder="Create todo..." v-model="todoNameSelf">
+      <button @click="addTodo(todoNameSelf,noteNameSelf), todoNameSelf=''">ADD</button>
+      <div v-for="(item, i) in notes[notes.length-1].todos" :key="i">
         <p>
-          <span>{{i+1}}. {{note.text}}</span>
-          <input type="checkbox" v-model="note.isComplete" @click="noteComplete(i)"> 
+          <span >{{i + 1 }}. {{item.text}} </span>
         </p>
       </div>
-      <p>Complete: </p>
-      <div>
-        <div v-for="item in notesDone" :key="item">
-          <p>
-            <span>{{item}}</span>
-            <span> ==> IS COMPLETE</span>
-          </p>
-        </div>
-      </div>
+      <button v-if="notes[notes.length-1].todos.length !== 0"
+              @click="saveNote(notes[0]), delNote()"
+      >SAVE</button>
+
     </div>
   </div>
 </template>
@@ -32,36 +25,52 @@
 export default {
   data(){
     return {
-      noteName:"",
-      todoName:"",
-      notes:[],
-      id: 1,
-      isDone: this.isComplete,
-      notesDone: []
-    }
-  }, 
-  destroyed() {
-    this.handleUpdateNotes(this.notes);
-  },
-  methods: {
-    noteComplete(i){
-      this.notesDone.push(this.notes[i].text);
-      this.notes.splice(i, 1);
-    },
-    addTodo(){
-      
-      this.notes.push({
-        id: this.id,
-        text: this.todoName,
-        isComplete: false
-
-      })
-      this.todoName = ''
-    },
-    addNote(){
+      noteNameSelf:'',
+      todoNameSelf:'',
+      // cloneNotes: JSON.parse(JSON.stringify(this.notes)),
+       notes:[{
+        noteName:'',
+        todos:[],
+        completeTodos:[{id:0,text:' text todo completed'}]
+      }],
+      id: -1,
 
     }
   },
-  props:['handleUpdateNotes']
+  props:[
+    "appNotes",
+    "addTodoClick",
+    "todoComplete",
+    "saveNote",
+
+  ],
+  methods:{
+    addTodo(todoName, noteName){
+      if(todoName !== "") {
+        console.log(this.notes.length-1);
+        this.notes[this.notes.length-1].todos.push({
+          id: this.id++,
+          text: todoName,
+          isCompleted: false,
+          editState: false
+
+        })
+        this.todoName = '';
+      }
+      if(noteName !== "") {
+        this.notes[this.notes.length-1].noteName = noteName
+      }
+    },
+    delNote(){
+      this.notes = [{
+        noteName:'',
+        todos:[],
+        completeTodos:[]
+      }]
+      this.noteNameSelf=''
+    }
+
+
+  }
 }
 </script>
