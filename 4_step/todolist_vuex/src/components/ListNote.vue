@@ -3,44 +3,59 @@
         <h2>List notes</h2>
         <!-- <p>{{this.cloneNotes}} </p> -->
         <ul>
-            <li v-for="(item, i) in cloneNotes" :key="i" >
+            <li v-for="(item, i) in allMyNotes" :key="i" >
                 <h2>{{item.noteName}} </h2>
                 <input type="button" value="Delete note" @click="deleteNote(i)">
                 <div v-for="(todo, index) in item.todos" :key="index" 
                 :class="{'strike': todo.isCompleted}" >
                     <span >{{todo.text}}</span>
                     <input type="checkbox" @click="todo.isCompleted = !todo.isCompleted" >
-                    <input type="button" value="Delete" @click="deleteTodo(index, i)">
+                    <input type="button" value="Delete" @click="delMyTodo(index, i)">
                     <input type="button" value="Edit" @click="todo.editState = !todo.editState">
                     <input type="text" v-if="todo.editState == true"
                            v-model="todo.text" >
                 </div>
             </li>
         </ul>
-        <button v-if="cloneNotes.length !== 0"
-              @click="saveAllEdits(cloneNotes)"
-        >SAVE</button>
+
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
-    props:["appNotes","saveAllEdits"],
+// created(){
+//     this.$store.dispatch('myAsyncMutation')
+//   },
     data(){
         return {
             id: 0,
-            cloneNotes: JSON.parse(JSON.stringify(this.appNotes)),
+            // cloneNotes: JSON.parse(JSON.stringify(this.$store.getters.allMyNotes)),
 
         }
     },
+    // computed: {
+    //     allMyNotess(){
+    //         return this.$store.getters.allMyNotes
+    //     }
+    // },
+    
+    computed: mapGetters([
+        'allMyNotes',
+        
+    ]),
     methods: {
-      deleteTodo(index, i){
-        this.cloneNotes[i].todos.splice(index, 1)
-        console.log(this.cloneNotes[i].todos[index]);
+      delMyTodo(i, index){
+        this.$store.dispatch('delMyTodo', {i:i, index:index})
+
       },
       deleteNote(i){
-        this.cloneNotes.splice(i, 1)
-      }
+        this.$store.dispatch('delMyNote', i)
+        // console.log(this.cloneNotes);
+        // console.log(this.$store.getters.allMyNotes);
+
+      },
+
     }
 }
 </script>
