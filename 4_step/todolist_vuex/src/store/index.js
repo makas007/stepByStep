@@ -28,6 +28,9 @@ export default new Vuex.Store({
     },
     delMyNote(state, payload){
       state.myNotes.splice(payload, 1)
+    },
+    testFunc(state, payload){
+      console.log(state, payload);
     }
   },
   actions:{
