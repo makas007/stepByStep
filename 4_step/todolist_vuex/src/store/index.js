@@ -29,11 +29,11 @@ export default new Vuex.Store({
     delMyNote(state, payload){
       state.myNotes.splice(payload, 1)
     },
-    testFunc(state, payload){
-      console.log(state, payload);
-      console.log(payload);
-      console.log(state);
-    }
+    // testFunc(state, payload){
+    //   console.log(state, payload);
+    //   console.log(payload);
+    //   console.log(state);
+    // }
   },
   actions:{
     // my2Mytation(context) { 
