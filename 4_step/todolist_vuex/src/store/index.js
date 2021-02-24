@@ -31,6 +31,8 @@ export default new Vuex.Store({
     },
     testFunc(state, payload){
       console.log(state, payload);
+      console.log(payload);
+      console.log(state);
     }
   },
   actions:{
