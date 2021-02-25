@@ -6,8 +6,10 @@
       <input type="text" placeholder="Set name the note..." v-model="noteNameSelf">
       <br>
       <br>
-      <input type="text" placeholder="Create todo..." v-model="todoNameSelf">
-      <button @click="addTodo(todoNameSelf,noteNameSelf), todoNameSelf=''">ADD</button>
+      <input @keyup.enter="addTodo(todoNameSelf,noteNameSelf)" type="text" placeholder="Create todo..." v-model="todoNameSelf">
+      <button @click="addTodo(todoNameSelf,noteNameSelf)">ADD</button>
+
+
       <div v-for="(item, i) in notes[notes.length-1].todos" :key="i">
         <p>
           <span >{{i + 1 }}. {{item.text}} </span>
@@ -44,7 +46,6 @@ export default {
   methods:{
     addTodo(todoName, noteName){
       if(todoName !== "") {
-        console.log(this.notes.length-1);
         this.notes[this.notes.length-1].todos.push({
           id: this.id++,
           text: todoName,
@@ -52,7 +53,7 @@ export default {
           editState: false
 
         })
-        this.todoName = '';
+        this.todoNameSelf='';
       }
       if(noteName !== "") {
         this.notes[this.notes.length-1].noteName = noteName
@@ -67,13 +68,9 @@ export default {
       this.noteNameSelf=''
     },
     saveStateNotes(){
-      // this.$store.commit('myMytation', this.notes)
-      
       this.$store.dispatch('myAsyncMutation', this.notes)
     },
-    saveNotes(){
 
-    }
  
 
 

@@ -13,12 +13,6 @@
       <listNote
         v-if="component == 'ListNote'
       "/>  
-  
-     <v-app>
-  <v-main>
-    Hello World
-  </v-main>
-</v-app>
 
   </div>
 </template>

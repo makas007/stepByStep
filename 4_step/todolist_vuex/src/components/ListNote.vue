@@ -10,7 +10,7 @@
                 :class="{'strike': todo.isCompleted}" >
                     <span >{{todo.text}}</span>
                     <input type="checkbox" @click="todo.isCompleted = !todo.isCompleted" >
-                    <input type="button" value="Delete" @click="delMyTodo(index, i)">
+                    <input type="button" value="Delete" @click="delMyTodo(i, index)">
                     <input type="button" value="Edit" @click="todo.editState = !todo.editState">
                     <input type="text" v-if="todo.editState == true"
                            v-model="todo.text" >
