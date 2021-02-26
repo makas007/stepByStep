@@ -3,19 +3,23 @@
     <div class="content">
       <hr>
       <p>Create new ToDo</p>
-      <input type="text" placeholder="Set name the note..." v-model="noteNameSelf">
-      <br>
-      <br>
-      <input @keyup.enter="addTodo(todoNameSelf,noteNameSelf)" type="text" placeholder="Create todo..." v-model="todoNameSelf">
-      <button @click="addTodo(todoNameSelf,noteNameSelf)">ADD</button>
-
-
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        </div>
+        <input type="text" placeholder="Set name the note..." v-model="noteNameSelf" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+      <div class="input-group mb-3">
+        <input class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" @keyup.enter="addTodo(todoNameSelf,noteNameSelf)" type="text" placeholder="Create todo..." v-model="todoNameSelf">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="addTodo(todoNameSelf,noteNameSelf)">Add</button>
+        </div>
+      </div>
       <div v-for="(item, i) in notes[notes.length-1].todos" :key="i">
         <p>
           <span >{{i + 1 }}. {{item.text}} </span>
         </p>
       </div>
-      <button v-if="notes[notes.length-1].todos.length !== 0"
+      <button class="btn btn-success" v-if="notes[notes.length-1].todos.length !== 0"
               @click="saveStateNotes(), delNote()"
       >SAVE</button>
 

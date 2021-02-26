@@ -1,23 +1,21 @@
 <template>
     <div class="wrapper">
-        <h2>List notes</h2>
-        <!-- <p>{{this.cloneNotes}} </p> -->
-        <ul>
-            <li v-for="(item, i) in allMyNotes" :key="i" >
-                <h2>{{item.noteName}} </h2>
-                <input type="button" value="Delete note" @click="deleteNote(i)">
-                <div v-for="(todo, index) in item.todos" :key="index" 
-                :class="{'strike': todo.isCompleted}" >
-                    <span >{{todo.text}}</span>
-                    <input type="checkbox" @click="todo.isCompleted = !todo.isCompleted" >
-                    <input type="button" value="Delete" @click="delMyTodo(i, index)">
-                    <input type="button" value="Edit" @click="todo.editState = !todo.editState">
-                    <input type="text" v-if="todo.editState == true"
-                           v-model="todo.text" >
-                </div>
-            </li>
-        </ul>
-
+      <h2>List notes</h2>
+      <ul>
+        <li v-for="(item, i) in allMyNotes" :key="i" >
+          <h4>{{item.noteName}} </h4>
+          <button type="button" class="btn btn-danger" @click="deleteNote(i)">Delete note</button>
+          <div v-for="(todo, index) in item.todos" :key="index" 
+          :class="{'strike': todo.isCompleted}" >
+              <span >{{todo.text}}</span>
+              <input type="checkbox" @click="todo.isCompleted = !todo.isCompleted" >
+              <button type="button" class="btn btn-light" @click="delMyTodo(i, index)">Del</button>
+              <button type="button" class="btn btn-light" @click="todo.editState = !todo.editState">Edit</button>
+              <input type="text" v-if="todo.editState == true"
+                      v-model="todo.text" >
+          </div>
+        </li>
+      </ul>
     </div>
 </template>
 
@@ -30,8 +28,6 @@ export default {
     data(){
         return {
             id: 0,
-            // cloneNotes: JSON.parse(JSON.stringify(this.$store.getters.allMyNotes)),
-
         }
     },
     // computed: {
