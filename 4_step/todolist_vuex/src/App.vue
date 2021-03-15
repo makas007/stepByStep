@@ -5,6 +5,7 @@
       <h1 class="title"> {{title}} </h1>
       <button  class="btn btn-outline-primary" @click="component = 'ListNote'">My notes</button>
       <button class="btn btn-outline-primary" @click="component = 'CreateTodo'">Create new note</button>
+      <button class="btn btn-outline-primary" @click="component = 'Photos'">Go pagination</button>
 
       <keep-alive>
         <createTodo 
@@ -12,9 +13,12 @@
       </keep-alive>
 
         
-        <listNote
-          v-if="component == 'ListNote'
-        "/>  
+      <listNote
+        v-if="component == 'ListNote'
+      "/> 
+      <Photos v-if="component == 'Photos'"/>
+      <Pgn />
+
 
     </div>
   </div>
@@ -25,6 +29,10 @@
 <script>
 import CreateTodo from './components/CreateTodo';
 import ListNote from './components/ListNote';
+import Photos from './components/Photos.vue';
+//import Pgn from './components/Pgn.vue'
+
+
 
 
 
@@ -41,9 +49,10 @@ export default {
   },
   components: {
     CreateTodo,
-    ListNote
+    ListNote,
+    Photos,
+    // Pgn
   },
-  
 }
 </script>
 <style>

@@ -51,7 +51,6 @@ export default {
         // console.log(this.$store.getters.allMyNotes);
 
       },
-
     }
 }
 </script>

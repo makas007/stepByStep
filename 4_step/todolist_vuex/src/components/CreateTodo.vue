@@ -74,10 +74,6 @@ export default {
     saveStateNotes(){
       this.$store.dispatch('myAsyncMutation', this.notes)
     },
-
- 
-
-
   }
 }
 </script>
