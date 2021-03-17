@@ -17,8 +17,6 @@
         v-if="component == 'ListNote'
       "/> 
       <Photos v-if="component == 'Photos'"/>
-      <Pgn />
-
 
     </div>
   </div>
@@ -30,7 +28,7 @@
 import CreateTodo from './components/CreateTodo';
 import ListNote from './components/ListNote';
 import Photos from './components/Photos.vue';
-//import Pgn from './components/Pgn.vue'
+
 
 
 
@@ -50,8 +48,7 @@ export default {
   components: {
     CreateTodo,
     ListNote,
-    Photos,
-    // Pgn
+    Photos
   },
 }
 </script>

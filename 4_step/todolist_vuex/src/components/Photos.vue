@@ -1,25 +1,63 @@
 <template>
   <div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A libero possimus corporis optio, et eaque. Nam, atque quaerat. Dolor accusantium nulla recusandae quos unde iure ab repellat cum? Nobis, repudiandae!</p>
-    <Pgn />
+    <ul class="qwe">
+      <div v-for="photo in photos" :key="photo.id" class="card" style="width: 18rem;">
+        <img class="card-img-top" :src="photo.url" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </ul>
+    <Pgn :change="onPageChange" 
+      :current="currentPage"
+      :total="totalPages" />
   </div>
 </template>
 
 <script>
-import Pgn from './Pgn.vue'
+import axios from 'axios'
+import Pgn from './Pgn'
 export default {
-  name: "Apdsdfsfdsp",
-  data() {
-    return {
-      title: "Todo app",
-      component: 'CreateTodo',
-    }
+  name: 'photos',
+  data: () => ({
+    photos: [],
+    currentPage: 0,
+    limitPage: 6,
+    totalItems: 60,
+    totalPages: 0
+    
+
+  }),
+  created () {
+    this.getData()
+    // axios.then
+    this.totalPages = Math.ceil(this.totalItems/this.limitPage)
   },
   methods: {
-
+    getData (){
+      axios.get(`https://jsonplaceholder.typicode.com/photos?_start=${this.currentPage*this.limitPage}&_limit=${this.limitPage}`)
+      .then((response) => {
+        this.photos = response.data
+      })
+    },
+    onPageChange ( page ) {
+      this.currentPage = page
+      this.getData()
+    },
   },
   components: {
-   Pgn
-  },
+    Pgn
+  }
+
 }
 </script>
+
+<style scoped>
+.qwe {
+  display: flex;
+  /* width: 75%; */
+  flex-wrap: wrap;
+}
+</style>
