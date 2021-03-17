@@ -10,18 +10,21 @@
         </div>
       </div>
     </ul>
-    <Pgn :change="onPageChange" 
+    <Pagination :records="totalPages" v-model="page" :per-page="limitPage" @paginate="onPageChange"/>
+    <!-- <Pgn :change="onPageChange" 
       :current="currentPage"
-      :total="totalPages" />
+      :total="totalPages" /> -->
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Pgn from './Pgn'
+// import Pgn from './Pgn'
+import Pagination from 'vue-pagination-2'
 export default {
   name: 'photos',
   data: () => ({
+    page: 1,
     photos: [],
     currentPage: 0,
     limitPage: 6,
@@ -33,22 +36,35 @@ export default {
   created () {
     this.getData()
     // axios.then
+    this.getTotalPages()
     this.totalPages = Math.ceil(this.totalItems/this.limitPage)
   },
   methods: {
     getData (){
       axios.get(`https://jsonplaceholder.typicode.com/photos?_start=${this.currentPage*this.limitPage}&_limit=${this.limitPage}`)
-      .then((response) => {
-        this.photos = response.data
-      })
+        .then((response) => {
+          this.photos = response.data
+        })
+    },
+    getTotalPages () {
+      axios.get('https://jsonplaceholder.typicode.com/photos')
+        .then((response) => {
+          this.totalPages = response.data.length
+          console.log(response.data.length);
+          // console.log(response.data.length(Math.ceil(this.totalItems/this.limitPage)));
+        })
     },
     onPageChange ( page ) {
       this.currentPage = page
       this.getData()
     },
+    callback: function(page) {
+      console.log(`Page ${page} was selected. Do something about it`);
+    }
   },
   components: {
-    Pgn
+    // Pgn,
+    Pagination
   }
 
 }

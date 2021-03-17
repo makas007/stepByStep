@@ -6,7 +6,7 @@
         <a class="page-link" href="#" @click="change(current-1)" :class="{'disabled': current === 0}">Prev</a>
       </li>
       <li class="page-item"
-          v-for="( page, i ) in pages" :key="i">
+          v-for="( page, i ) in total" :key="i">
         <a class="page-link" href="#" @click.prevent='change(i)'>{{ i+1 }}</a>
       </li>
       <li class="page-item">
@@ -19,7 +19,7 @@
 <script>
 export default {
   data: () => ({
-    pages: 10
+    pages: 1
   }),
   props: {
     current: {
@@ -28,12 +28,11 @@ export default {
     },
     change: {
       type: Function
+    },
+    total: {
+      type: Number
     }
   },
-  methods: {
-
-  },
-
 }
 </script>
 <style scoped>
