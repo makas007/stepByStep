@@ -12,29 +12,29 @@ export default new Vuex.Store({
     myNotes: [],
   },
   getters: {
-    allMyNotes(state){
-        return state.myNotes
+    allMyNotes(state) {
+      return state.myNotes
     }
     // allMyNotes: (state) => state.myNotes
   },
   mutations: {
-    myMytation (state, payload){
+    myMytation(state, payload) {
       // state.myNotes = payload
       state.myNotes = [...state.myNotes, ...payload]
     },
-    delMyTodo(state, payload){
+    delMyTodo(state, payload) {
       console.log(state);
-      state.myNotes[payload.i].todos.splice(payload.index, 1)
+      state.myNotes[payload.index].todos.splice(payload.i, 1)
     },
-    delMyNote(state, payload){
+    delMyNote(state, payload) {
       state.myNotes.splice(payload, 1)
     },
-    testFunc(state, payload){
+    testFunc(state, payload) {
       console.log(payload);
       console.log(state);
     }
   },
-  actions:{
+  actions: {
     // my2Mytation(context) { 
     //   context.commit('myMutation')
     // }
@@ -42,17 +42,17 @@ export default new Vuex.Store({
     // myMytation( {commit}) { 
     //   commit('myMytation')
     // }
-    myAsyncMutation({commit}, payload) {
+    myAsyncMutation({ commit }, payload) {
       setTimeout(() => {
         commit('myMytation', payload)
       }, 3000);
     },
-    delMyTodo(context, payload){
+    delMyTodo(context, payload) {
       setTimeout(() => {
         context.commit('delMyTodo', payload)
       }, 3000);
     },
-    delMyNote({commit}, payload){
+    delMyNote({ commit }, payload) {
       setTimeout(() => {
         commit('delMyNote', payload)
       }, 2000);
